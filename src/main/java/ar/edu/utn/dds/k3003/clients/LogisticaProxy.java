@@ -52,9 +52,9 @@ public List<TrasladoDTO> trasladosDeColaborador(Long var1, Integer var2, Integer
         return execute.body();
     }
     if (execute.code() == HttpStatus.NOT_FOUND.getCode()) {
-        throw new NoSuchElementException("no se encontraron las viandas del colaborador " + var1);
+        throw new NoSuchElementException("no se encontraron traslados del colaborador " + var1);
     }
-    throw new RuntimeException("Error conectandose con el componente viandas");
+    throw new RuntimeException("Error conectandose con el componente logística");
 }
 
 public void setHeladerasProxy(FachadaHeladeras var1){}

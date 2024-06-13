@@ -18,11 +18,10 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class WebApp {
-    public static EntityManagerFactory entityManagerFactory;
-
+   public static EntityManagerFactory entityManagerFactory;
     public static void main(String[] args) {
 
-        startEntityManagerFactory();
+       startEntityManagerFactory();
 
         var env = System.getenv();
         var objectMapper = createObjectMapper();
@@ -58,7 +57,7 @@ public class WebApp {
     }
 
     public static void startEntityManagerFactory() {
-// https://stackoverflow.com/questions/8836834/read-environment-variables-in-persistence-xml-file
+    //https://stackoverflow.com/questions/8836834/read-environment-variables-in-persistence-xml-file
         Map<String, String> env = System.getenv();
         Map<String, Object> configOverrides = new HashMap<String, Object>();
         String[] keys = new String[] { "javax.persistence.jdbc.url", "javax.persistence.jdbc.user",
@@ -70,7 +69,7 @@ public class WebApp {
                 configOverrides.put(key, value);
             }
         }
-        entityManagerFactory = Persistence.createEntityManagerFactory("db", configOverrides);
+        entityManagerFactory = Persistence.createEntityManagerFactory("colaboradoresdb", configOverrides);
     }
 
 }
