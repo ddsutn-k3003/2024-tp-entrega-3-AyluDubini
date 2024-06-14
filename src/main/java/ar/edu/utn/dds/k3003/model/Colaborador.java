@@ -16,18 +16,16 @@ import java.util.List;
 @Entity
 public class Colaborador {
 
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id  //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column//(name = "colaborador_id")
     private Long id;
     @Column
     private String nombre;
 
-    @Transient
-    /*@Column //revisar
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @ManyToMany
-    @NotNull
-    @Enumerated(EnumType.STRING)*/
+    //@Transient
+    @ElementCollection(targetClass = FormaDeColaborarEnum.class,fetch = FetchType.EAGER)
+    @CollectionTable(name = "formas_de_colaborar", joinColumns = @JoinColumn(name = "colaborador_id"))
+    @Column(name = "forma")
     private List<FormaDeColaborarEnum> formas;
 
     public Colaborador(String nombre, List<FormaDeColaborarEnum> formas) {

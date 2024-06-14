@@ -27,24 +27,9 @@ public class ColaboradorController {
         this.fachada = fachada;
     }
 
-    /*public void handle(Context ctx) throws Exception {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        ColaboradorRepository repo = new ColaboradorRepository(em);
-        Colaborador colaborador = ctx.bodyAsClass(Colaborador.class);
-        em.getTransaction().begin();
-        repo.save(colaborador);
-        em.getTransaction().commit();
-        em.close();
-        ctx.json(colaborador);
-    }*/
-
     public void agregar(Context context) {
-        EntityManager em = entityManagerFactory.createEntityManager();
         var colaboradorDTO = context.bodyAsClass(ColaboradorDTO.class);
-        em.getTransaction().begin();
         var colaboradorDTORta = this.fachada.agregar(colaboradorDTO);
-        em.getTransaction().commit();
-        em.close();
         context.json(colaboradorDTORta);
     }
 
@@ -59,10 +44,10 @@ public class ColaboradorController {
         }
     }
 
-    public void modificar(Context context) { //revisar
-        var id = context.pathParamAsClass("id", Long.class).get();
+    public void modificar(Context context) { //ok
         EntityManager em = entityManagerFactory.createEntityManager();
-        var forma = context.bodyAsClass(FormaDeColaborarEnum.class);
+        var id = context.pathParamAsClass("id", Long.class).get();
+        FormaDeColaborarEnum forma = context.bodyAsClass(FormaDeColaborarEnum.class);
         try{
             em.getTransaction().begin();
             var colaboradorDTO = this.fachada.modificar(id, List.of(forma));
@@ -85,7 +70,7 @@ public class ColaboradorController {
             }
     }
 
-    public void actualizarPuntos(Context context) {
+    public void actualizarPuntos(Context context) {//ok
         PuntosBody puntos = context.bodyAsClass(PuntosBody.class);
         Double pesosDonados = puntos.getPesosDonados();
         Double viandasDistribuidas = puntos.getViandasDistribuidas();//context.attribute("viandasDistribuidas");
@@ -105,7 +90,7 @@ public class ColaboradorController {
             context.status(HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    public void prueba(Context context) {
+    public void prueba(Context context) {//ok
         EntityManager em = entityManagerFactory.createEntityManager();
         ColaboradorDTO colaborador1 = new ColaboradorDTO("Pepe" , List.of(FormaDeColaborarEnum.DONADOR));
         ColaboradorDTO colaborador2 = new ColaboradorDTO("Jose" , List.of(FormaDeColaborarEnum.TRANSPORTADOR));
@@ -121,10 +106,4 @@ public class ColaboradorController {
         context.json(colaboradorDTORta2);*/
         context.json(colaboradorDTORta3);
     }
-    public void borrarBD(Context context) {
-
-    }
-
-
-
 }

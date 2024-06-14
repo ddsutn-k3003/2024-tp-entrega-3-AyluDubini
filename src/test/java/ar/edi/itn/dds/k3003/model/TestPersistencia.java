@@ -51,7 +51,7 @@ public class TestPersistencia {
         Colaborador colaborador= new Colaborador("Jose" , List.of(DONADOR));
 // Notar que volvemos a inicializar la persistencia
         entityManager = entityManagerFactory.createEntityManager();
-        ColaboradorRepository colaboradorRepo= new ColaboradorRepository(entityManager);
+        ColaboradorRepository colaboradorRepo= new ColaboradorRepository(entityManagerFactory);
         //List<Revisor> revisores = revisorRepo.all();
         entityManager.getTransaction().begin();
         colaboradorRepo.save(colaborador);
@@ -59,7 +59,7 @@ public class TestPersistencia {
         entityManager.close();
 // Otra interaccion
         entityManager = entityManagerFactory.createEntityManager();
-        colaboradorRepo = new ColaboradorRepository(entityManager);
+        colaboradorRepo = new ColaboradorRepository(entityManagerFactory);
         entityManager.getTransaction().begin();
         Colaborador colaboradorX = colaboradorRepo.findById(colaborador.getId());
 // Marco manualmente el valor de copia en un valor alto

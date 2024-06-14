@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,10 +29,10 @@ public class TestColaborador {
     @Mock FachadaLogistica logistica;
     @Mock FachadaViandas viandas;
     String nombre1;
-
+    public static EntityManagerFactory entityManagerFactory; //agregado
     @BeforeEach
     void setUp() {
-        fColaboradores = new Fachada(); // this.instance();
+        fColaboradores = new Fachada(entityManagerFactory); // this.instance();
         formaDeColaborar = List.of(FormaDeColaborarEnum.DONADOR);
         colaborador = new ColaboradorDTO("Juana" , formaDeColaborar);
         nombre1 = "Juan";

@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public class Fachada implements ar.edu.utn.dds.k3003.facades.FachadaColaboradores {
-    private final ColaboradorRepository colaboradorRepository;
+    public final ColaboradorRepository colaboradorRepository;
     private final ColaboradorMapper colaboradorMapper;
     private Double pesosDonadosPeso;
     private Double viandasDistribuidasPeso;
@@ -24,9 +24,10 @@ public class Fachada implements ar.edu.utn.dds.k3003.facades.FachadaColaboradore
     private Double heladerasActivasPeso;
     private FachadaViandas fachadaViandas;
     private FachadaLogistica fachadaLogistica;
+    //public  EntityManagerFactory entityManagerFactory;
 
-    public Fachada() {
-        this.colaboradorRepository = new ColaboradorRepository();
+    public Fachada(EntityManagerFactory entityManagerFactory) {
+        this.colaboradorRepository = new ColaboradorRepository(entityManagerFactory);
         this.colaboradorMapper = new ColaboradorMapper();
     }
 
