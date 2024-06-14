@@ -24,7 +24,6 @@ public class Fachada implements ar.edu.utn.dds.k3003.facades.FachadaColaboradore
     private Double heladerasActivasPeso;
     private FachadaViandas fachadaViandas;
     private FachadaLogistica fachadaLogistica;
-    //public  EntityManagerFactory entityManagerFactory;
 
     public Fachada(EntityManagerFactory entityManagerFactory) {
         this.colaboradorRepository = new ColaboradorRepository(entityManagerFactory);
@@ -77,11 +76,11 @@ public class Fachada implements ar.edu.utn.dds.k3003.facades.FachadaColaboradore
                 viandasDonadas(colaboradorId) * viandasDonadasPeso;}
 
     public Long viandasDonadas(Long colaboradorId){
-        List<ViandaDTO> viandas =  fachadaViandas.viandasDeColaborador(colaboradorId,1,2024);
+        List<ViandaDTO> viandas =  fachadaViandas.viandasDeColaborador(colaboradorId,6,2024);
         return (long) viandas.size();
     }
     public Long viandasDistribuidas(Long colaboradorId){
-        List<TrasladoDTO> traslados =  fachadaLogistica.trasladosDeColaborador(colaboradorId,1,2024);
+        List<TrasladoDTO> traslados =  fachadaLogistica.trasladosDeColaborador(colaboradorId,6,2024);
         return (long) traslados.size();
     }
     @Override
