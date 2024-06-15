@@ -61,20 +61,8 @@ public class ColaboradorRepository {
         EntityManager em = entityManagerFactory.createEntityManager();
         Colaborador col1 = this.findById(id);
         em.getTransaction().begin();
-       // em.remove(col1);
         em.remove(em.contains(col1) ? col1 : em.merge(col1));
         em.getTransaction().commit();
         em.close();
     }
-
-    /*public List<Colaborador> all() {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Colaborador> criteriaQuery = criteriaBuilder.createQuery(Colaborador.class);
-        Root<Colaborador> root = criteriaQuery.from(Colaborador.class);
-        criteriaQuery.select(root);
-        return entityManager.createQuery(criteriaQuery).getResultList();
-    }*/
-
-
-
 }

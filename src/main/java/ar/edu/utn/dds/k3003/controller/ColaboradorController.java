@@ -3,9 +3,7 @@ package ar.edu.utn.dds.k3003.controller;
 import ar.edu.utn.dds.k3003.app.Fachada;
 import ar.edu.utn.dds.k3003.facades.dtos.ColaboradorDTO;
 import ar.edu.utn.dds.k3003.facades.dtos.FormaDeColaborarEnum;
-import ar.edu.utn.dds.k3003.model.Colaborador;
 import ar.edu.utn.dds.k3003.model.PuntosBody;
-import ar.edu.utn.dds.k3003.persist.ColaboradorRepository;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 
@@ -17,10 +15,6 @@ import java.util.NoSuchElementException;
 public class ColaboradorController {
     private final Fachada fachada;
     private EntityManagerFactory entityManagerFactory;
-
-    /*public ColaboradorController(Fachada fachada) {
-        this.fachada = fachada;
-    }*/
 
     public ColaboradorController(Fachada fachada, EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
@@ -99,12 +93,11 @@ public class ColaboradorController {
         context.json(colaboradorDTORta3);
     }
 
-    /*public void clean(Context context) {
+    public void clean(Context context) {
       EntityManager em = entityManagerFactory.createEntityManager();
       em.getTransaction().begin();
       try{
           em.createQuery("DELETE FROM Colaborador").executeUpdate();
-          em.createQuery("DELETE FROM FormaDeColaborarEnum").executeUpdate();
           em.getTransaction().commit();
       }catch(RuntimeException e){
           if(em.getTransaction().isActive()) em.getTransaction().rollback();
@@ -112,5 +105,5 @@ public class ColaboradorController {
       } finally{
           em.close();
       }
-    }*/
+    }
 }

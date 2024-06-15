@@ -42,7 +42,7 @@ public class WebApp {
         app.get("/colaboradores/{id}/puntos",colaboradorController::puntos);
         app.put("/formula", colaboradorController::actualizarPuntos);
         app.post("/colaboradores/prueba", colaboradorController::prueba);
-        //app.delete("/cleanup",colaboradorController::clean);
+        app.delete("/cleanup",colaboradorController::clean);
     }
 
     public static ObjectMapper createObjectMapper() {
